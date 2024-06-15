@@ -1,0 +1,135 @@
+.de FN
+\fI\|\\$1\|\fP
+..
+.TH ue 1 "2005 Dec 8" ue
+.SH NAME
+ue, uem \- micro-editor (w/help), micro-editor-minimal (w/o help)
+.SH SYNTAX
+.B "ue <FILENAME><FILENAME>[:line-number]
+.PP
+<FILENAME> is NOT optional. 
+.PP
+[:line-number] Start editor at the optional (grep output format) line-number.
+No space between <FILENAME> and :line-number.
+
+.SH DESCRIPTION
+.I ue
+is a file editor (text editor) designed for minimal binary size. It supports
+files up to 1 MB, exact match search for strings, goto line number and undo.
+The main window consists of two parts: status line showing line number,
+coloumn, modified flag, hex value of last key, prompted strings and help
+access (help for ue only) and text area. Default size is 80 characters by 24
+lines. To change window size edit the source and recompile.
+
+.PP
+.I ue
+was written to fullfill a need for a basic, simple, functional, reference text
+editor, written using only libc. It runs from either the bare linux console or
+from within a terminal under X-windows. The source is 500 lines for \fIue\fP
+and less for \fIuem\fP.
+
+.SH KEYS
+The keys to use with \fIue\fP or \fIuem\fP are identical except for no help
+key in \fIuem\fP. At any prompted input you can hit \fIEsc\fP twice to cancel
+the operation. Other bindings are:
+
+.PP
+.IP "Ctrl-S"
+Move left one character.
+.PP
+.IP "Ctrl-D"
+Move right one character.
+.PP
+.IP "Ctrl-E"
+Move up one line.
+.PP
+.IP "Ctrl-X"
+Move down one line.
+.PP
+.IP "Ctrl-A"
+Move to beginning of word left.
+.PP
+.IP "Ctrl-F"
+Move to beginning of word right.
+.PP
+.IP "Ctrl-["
+Move to beginning of line.
+.PP
+.IP "Ctrl-\]"
+Move to end of line.
+.PP
+.IP "Ctrl-R"
+Page up. Move cursor text-area-height-1 lines up.
+.PP
+.IP "Ctrl-C"
+Page down. Move cursor text-area-height-1 lines down.
+.PP
+.IP "Ctrl-T"
+Move to Top of file.
+.PP
+.IP "Ctrl-B"
+Move to Bottom of file.
+.PP
+.IP "Ctrl-G"
+Delete character under cursor.
+.PP
+.IP "Ctrl-H"
+Delete character before cursor.
+.PP
+.IP "Ctrl-Y"
+Delete from cursor to end of line. If at line end, delete line end.
+.PP
+.IP "Ctrl-U"
+Undo previous insert/delete character operations, one at a time. When undo
+buffer is empty, text is in original format, unmodified, as indicated by lack
+of a '*' on the status line.
+.PP
+.IP "Ctrl-W"
+Write file. No backup made. Undo buffer reset to empty.
+.PP
+.IP "Ctrl-L"
+Look for string. During search string prompted input, both Backspace and
+Ctrl-H remove the character before the string end. New search strings require
+backspacing to the start of the old search string. To stop find string input
+without searching, enter Esc, twice. To start the find operation, press either
+Enter or Ctrl-L. The previous search string is retained so search again is
+Ctrl-L Ctrl-L. A find operation will position the cursor at the start of the
+found string, or at the bottom of the file if the string is not found.
+
+.PP
+.IP "Ctrl-J"
+Jump to line number. During prompted input, specify the new line number in
+decimal. Input editing as in 'Find string', above.
+
+.PP
+.IP "Alt H"
+\fIue\fP only. Display help message screen. Press any key to continue.
+.PP
+.IP "Ctrl-Q"
+Quit. If file has been modified you will be prompted to save and exit or
+to lose changes and exit.
+
+.SH BUGS
+.PP
+Screen refresh on a bare linux console may be ugly at times with extraneous
+cursors. Press any cursor navigation key to remove.
+.PP
+\fIue\fP/\fIuem\fP use exact string match search.
+.PP
+\fIue\fP/\fIuem\fP can behave strange if terminal width is less than the
+default 80 columns. Characters past the compiled in width are not displayed.
+Truncate to shorter lengths using the \fIEnter\fP key.
+.PP
+Due to terminal control sequences having an \fIEsc\fP prefix, \fIEsc\fP must
+be pressed twice to be recognized as a valid input key.
+
+.SH WARRANTY
+.PP
+This software comes with no warranties or binaries. Compile and use at your
+own risk.
+
+.SH AUTHOR AND COPYRIGHT
+.PP
+The author of \fIue\fP is Terry Loveall <loveall@iinet.com>. Feel free to
+e-mail me for any problems, suggestions and bug reports. 
+ue and uem are released into the Public Domain.
